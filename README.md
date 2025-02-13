@@ -20,15 +20,18 @@
 - **Repositories (Repositórios)**: Responsável por acessar o banco de dados, geralmente interagindo com os Models.
 - **Models (Modelos)**: Representam as entidades e suas estruturas no banco de dados.
 
-## Esquema mermaid
+## Representações das Camadas
 ```mermaid
 graph TD
     A[App] --> B[Routes]
-    B --> C[Controllers]
-    C --> D[Services]
-    D --> E[Repositories]
-    E --> F[Models]
+    B[Routes (Define os endpoints e direciona as requisições)] --> C[Controllers]
+    C[Controllers (Processa as requisições, chamando os serviços necessários)] --> D[Services]
+    D[Services (Contém a lógica de negócio da aplicação)] --> E[Repositories]
+    E[Repositories (Responsável por acessar o banco de dados, geralmente interagindo com os Models)] --> F[Models]
+    F[Models (Representam as entidades e suas estruturas no banco de dados)]
 ```
+
+<hr>
 
 ```mermaid
 graph TD
