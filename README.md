@@ -24,11 +24,24 @@
 ```mermaid
 graph TD
     A[App] --> B[Routes]
-    B[Routes (Define os endpoints e direciona as requisições)] --> C[Controllers]
-    C[Controllers (Processa as requisições, chamando os serviços necessários)] --> D[Services]
-    D[Services (Contém a lógica de negócio da aplicação)] --> E[Repositories]
-    E[Repositories (Responsável por acessar o banco de dados, geralmente interagindo com os Models)] --> F[Models]
-    F[Models (Representam as entidades e suas estruturas no banco de dados)]
+    B[Routes] --> C[Controllers]
+    C[Controllers] --> D[Services]
+    D[Services] --> E[Repositories]
+    E[Repositories] --> F[Models]
+
+    class B, C, D, E, F description
+    classDef description fill:#f9f,stroke:#333,stroke-width:2px;
+    B:::description
+    C:::description
+    D:::description
+    E:::description
+    F:::description
+
+    click B "javascript:alert('Define os endpoints e direciona as requisições')"
+    click C "javascript:alert('Processa as requisições, chamando os serviços necessários')"
+    click D "javascript:alert('Contém a lógica de negócio da aplicação')"
+    click E "javascript:alert('Responsável por acessar o banco de dados, geralmente interagindo com os Models')"
+    click F "javascript:alert('Representam as entidades e suas estruturas no banco de dados')"
 ```
 
 <hr>
