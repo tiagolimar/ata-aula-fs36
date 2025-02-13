@@ -9,22 +9,40 @@
   - pg
   - sequelize
 
+## Noções de Arquitetura em Camadas
+- Essa estrutura é bastante usada em aplicações Node.js com frameworks como Express e NestJS, pois promove a separação de responsabilidades e facilita manutenção e testes.
+
 ## Camadas de uma aplicação
 - **App**: Ponto de entrada da aplicação
-- **Service**: Contém as regras de negócio
-- **Model**: Contém a modelagem de uma entidade (dados de uma tabela no banco de dados)
-- **Controller**: Intermediário entre a rota e o service
-- **Routes**: Configurações de rotas do projeto
-- **Repository**: Intermediário entre o ORM e a camada de serviços
+- **Routes (Rotas)**: Define os endpoints e direciona as requisições.
+- **Controllers (Controladores)**: Processa as requisições, chamando os serviços necessários, é um intermediário entre as camadas de rotas e serviços.
+- **Services (Serviços)**: Contém a lógica de negócio da aplicação.
+- **Repositories (Repositórios)**: Responsável por acessar o banco de dados, geralmente interagindo com os Models.
+- **Models (Modelos)**: Representam as entidades e suas estruturas no banco de dados.
 
 ## Esquema mermaid
 ```mermaid
 graph TD
     A[App] --> B[Routes]
-    B --> C[Controller]
-    C --> D[Service]
-    D --> E[Repository]
-    E --> F[Model]
+    B --> C[Controllers]
+    C --> D[Services]
+    D --> E[Repositories]
+    E --> F[Models]
+```
+
+```mermaid
+graph TD
+    subgraph App
+        subgraph Routes
+            subgraph Controllers
+                subgraph Services
+                    subgraph Repositories
+                        Models
+                    end
+                end
+            end
+        end
+    end
 ```
 
 ## Indicação de curso sobre Clean Architecture
