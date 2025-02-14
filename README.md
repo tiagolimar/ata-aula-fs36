@@ -75,4 +75,9 @@ graph TD
 
 ## Windsurf
 - Construído para mantê-lo em estado de fluxo O primeiro IDE agente e mais alguns. O Windsurf Editor é onde o trabalho dos desenvolvedores e da IA ​​realmente flui junto, permitindo uma experiência de codificação que parece literalmente mágica.
-- **Link**: [windsurf](https://codeium.com/windsurf)
+- **Link para Download**: [windsurf](https://codeium.com/windsurf)
+- Discussão porque as IA's não tornarão obsoleto a existência de desenvolvedores.
+
+## Bolt
+- Construído para acelerar o desenvolvimento de software, o Bolt é uma ferramenta de integração contínua que automatiza a construção, teste e implantação de aplicações. Ele permite que os desenvolvedores se concentrem no código, enquanto o Bolt cuida do restante do processo.
+- **Link para Download**: [Bolt](https://bolt.new)
