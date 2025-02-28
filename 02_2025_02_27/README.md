@@ -2,8 +2,115 @@
 
 ## Criação de um CRUD
 - Desenvolvimento de um CRUD com frontend simples, aproveitando o backend das últimas aulas.
+
+## React Router DOM
 - Uso do [React Router DOM](https://reactrouter.com/) para gerenciamento de rotas.
+
+## Material-UI
 - Uso do [Material-UI Data Grid](https://mui.com/components/data-grid/) para exibição de dados em tabela.
+
+## React Hook Form
+- React Hook Form é uma biblioteca flexível e eficiente para gerenciar formulários no React. Ela fornece uma API simples e intuitiva para lidar com validação de formulários, mensagens de erro e envio de formulários. Com o React Hook Form, você pode criar facilmente formulários complexos com código mínimo e melhor desempenho. Para saber mais sobre o React Hook Form, você pode visitar a documentação oficial [aqui](https://react-hook-form.com/).
+
+Exemplo de uso do React Hook Form: 
+
+``` javascript
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+const MyForm = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('name', { required: true })} />
+      {errors.name && <span>This field is required</span>}
+
+      <input {...register('email', { required: true, pattern: /^\S+@\S+$/i })} />
+      {errors.email && <span>Please enter a valid email address</span>}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default MyForm;
+```
+
+## Axios
+
+- Axios é uma biblioteca JavaScript popular usada para fazer requisições HTTP a partir de um navegador ou do Node.js. Ela fornece uma API fácil de usar para enviar requisições HTTP assíncronas e lidar com as respostas.
+
+Para usar o Axios no seu projeto, você pode instalá-lo via npm ou yarn:
+
+```bash
+npm install axios
+```
+
+Uma vez instalado, você pode importar o Axios e começar a fazer requisições. Aqui está um exemplo de como fazer uma requisição GET:
+
+```javascript
+import axios from 'axios';
+
+axios.get('https://api.exemplo.com/dados')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+```
+
+O Axios suporta vários métodos de requisição, como GET, POST, PUT, DELETE e outros. Ele também permite definir cabeçalhos de requisição, lidar com interceptadores de requisição e resposta, e cancelar requisições.
+
+## SWR
+
+- SWR é uma biblioteca para React que facilita o processo de busca de dados em tempo real. Ela fornece uma solução simples e eficiente para lidar com o cache, revalidação e atualização dos dados.
+
+- Com o SWR, você pode buscar dados de APIs de forma declarativa, mantendo-os atualizados automaticamente. Ele também oferece recursos avançados, como suporte a paginção, revalidação sob demanda e manipulação de erros.
+
+- Além disso, o SWR possui uma integração perfeita com o React, permitindo que você utilize hooks personalizados para buscar e gerenciar os dados. Isso torna o processo de busca de dados mais fácil e intuitivo.
+
+- Para começar a usar o SWR, você pode instalá-lo via npm ou yarn:
+
+```bash
+npm install swr
+```
+
+- Em seguida, você pode importar o hook `useSWR` e começar a buscar dados. Aqui está um exemplo de como buscar dados de uma API:
+
+```javascript
+import useSWR from 'swr';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+const MyComponent = () => {
+  const { data, error, isLoading } = useSWR('/api/data', fetcher);
+
+  if (error) return <div>Erro ao buscar os dados</div>;
+  if (isLoading) return <div>Carregando...</div>;
+
+  return (
+    <div>
+      {data.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+- Neste exemplo, o hook `useSWR` é utilizado para buscar dados da API `/api/data` utilizando a função `fetcher`. O hook gerencia automaticamente o cache, revalidação e atualização dos dados, permitindo que você exiba os dados em tempo real.
+
+- Para obter mais informações sobre como usar o SWR e seus recursos, você pode consultar a documentação oficial [aqui](https://swr.vercel.app/).
+
+
 
 ## TSX e uso de Interfaces
 - Estudo sobre o uso de TypeScript e Interfaces para tipagem estática e melhor organização do código.
@@ -85,3 +192,4 @@ Neste exemplo, a interface <code>Contato</code> define a estrutura que os objeto
 Para aprofundar seu conhecimento sobre o uso de interfaces em TypeScript, recomendo o seguinte recurso:
 
 [Como Usar Interfaces no TypeScript | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-interfaces-in-typescript)
+
