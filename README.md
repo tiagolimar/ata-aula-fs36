@@ -4,3 +4,5 @@ Este é um repositório destinado a armazenar a documentação das últimas aula
 [01 - 13 de fevereiro de 2025](01_2025_02_13/README.md)
 
 [02 - 27 de fevereiro de 2025](02_2025_02_27/README.md)
+
+Ou clique **[AQUI](02_2025_02_27/README.md)** para ter acesso para a última aula

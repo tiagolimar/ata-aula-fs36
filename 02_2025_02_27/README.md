@@ -179,6 +179,77 @@ export default MyComponent;
 
 - Para obter mais informações sobre como usar o SWR e seus recursos, você pode consultar a documentação oficial [aqui](https://swr.vercel.app/).
 
+## Migrations no Sequelize
+
+As migrations são uma forma de controlar e versionar o esquema do banco de dados em uma aplicação. Elas permitem que você defina e aplique alterações no esquema do banco de dados de forma incremental, facilitando a colaboração entre desenvolvedores e o gerenciamento de alterações no banco de dados ao longo do tempo.
+
+No contexto do Sequelize, um ORM (Object-Relational Mapping) para Node.js, as migrations são implementadas através de arquivos JavaScript que descrevem as alterações a serem feitas no esquema do banco de dados. Cada migration é composta por um par de métodos `up` e `down`. O método `up` define as alterações a serem aplicadas no esquema do banco de dados, enquanto o método `down` define as alterações a serem desfeitas, permitindo a reversão das migrations.
+
+### 1. Instalação do Sequelize CLI
+```bash
+npm install --save-dev sequelize-cli
+```
+
+### 2. Inicialização do Sequelize
+```bash
+npx sequelize-cli init
+```
+
+### 3. Criar uma Migration
+```bash
+npx sequelize-cli migration:generate --name create-users
+```
+
+### 4. Editar a Migration
+Abra o arquivo gerado em `migrations/` e defina a estrutura da tabela:
+
+```javascript
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Users', {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false
+      }
+    });
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Users');
+  }
+};
+```
+
+### 5. Executar Migrations
+```bash
+npx sequelize-cli db:migrate
+```
+
+### 7. Reverter Migrations
+```bash
+npx sequelize-cli db:migrate:undo
+npx sequelize-cli db:migrate:undo:all
+```
+
+### Documentação Oficial
+
+Para mais informações, consulte a documentação oficial do Sequelize:
+
+🔗 [Sequelize Migrations](https://sequelize.org/docs/v6/other-topics/migrations/)
 
 
 ## TSX e uso de Interfaces
