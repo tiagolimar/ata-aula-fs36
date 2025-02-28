@@ -9,6 +9,75 @@
 ## Material-UI
 - Uso do [Material-UI Data Grid](https://mui.com/components/data-grid/) para exibição de dados em tabela.
 
+## Problema de CORS
+
+O problema de CORS (Cross-Origin Resource Sharing) ocorre quando um navegador impede que um site acesse recursos de outro domínio. Isso é uma medida de segurança implementada pelos navegadores para proteger os usuários de possíveis ataques.
+
+O cabeçalho HTTP `Access-Control-Allow-Origin` é usado para controlar o acesso a recursos de diferentes origens. Ele especifica quais domínios têm permissão para acessar os recursos de um determinado domínio.
+
+Quando o navegador faz uma solicitação para um recurso em um domínio diferente, ele verifica se o cabeçalho `Access-Control-Allow-Origin` está presente na resposta. Se o domínio do navegador estiver na lista de domínios permitidos, a solicitação é permitida. Caso contrário, o navegador bloqueia a solicitação e gera um erro de CORS.
+
+Para resolver o problema de CORS, existem algumas abordagens:
+
+1. Configurar o servidor para incluir o cabeçalho `Access-Control-Allow-Origin` na resposta. Isso pode ser feito definindo o cabeçalho no servidor ou usando uma biblioteca como o CORS.
+
+2. Usar um proxy reverso para redirecionar as solicitações do cliente para o servidor. O proxy pode adicionar o cabeçalho `Access-Control-Allow-Origin` na resposta, permitindo que o cliente acesse os recursos.
+
+A biblioteca CORS é uma solução popular para lidar com o problema de CORS em aplicativos web. Ela simplifica a configuração do cabeçalho `Access-Control-Allow-Origin` e fornece opções flexíveis para controlar o acesso a recursos de diferentes origens.
+
+Ao usar a biblioteca CORS, você pode definir as origens permitidas, os métodos HTTP permitidos, os cabeçalhos permitidos e outras configurações relacionadas ao CORS. Isso permite que você tenha um controle granular sobre quais solicitações são permitidas e quais são bloqueadas.
+
+Para usar a biblioteca CORS, você precisa instalá-la via npm ou yarn:
+
+```bash
+npm install cors
+```
+
+Em seguida, você pode importar a biblioteca e usá-la no seu servidor. Aqui está um exemplo de como configurar o CORS em um servidor Node.js usando a biblioteca CORS:
+
+```javascript
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+// Configuração do CORS para permitir acesso a um único endpoint
+app.use(cors({
+  origin: 'https://meuwebsite.com' // Substitua "https://meuwebsite.com" pelo seu endpoint específico
+}));
+
+// app.use(cors()) Permite o acesso de qualquer origem ao invés de um endpoint específico
+
+// Resto do código do servidor...
+
+app.listen(3000, () => {
+  console.log('Servidor iniciado na porta 3000');
+});
+```
+
+Neste exemplo, o CORS está configurado para permitir acesso apenas ao endpoint específico "https://meuwebsite.com". Isso significa que somente as solicitações originadas desse endpoint terão permissão para acessar o servidor.
+
+Para permitir acesso de qualquer origem, você pode substituir o valor de `origin` por `'*'`. No entanto, é importante considerar os riscos de segurança ao permitir acesso de qualquer origem, pois isso pode expor seu servidor a possíveis ataques. Certifique-se de avaliar cuidadosamente os riscos antes de tomar essa decisão.
+
+Lembre-se de reiniciar o servidor após fazer as alterações no código.
+
+
+## Curiosidade Javascript !!
+
+- No JavaScript, !! (dupla negação) é uma forma de converter um valor para um booleano (verdadeiro ou falso).
+  > 1. A primeira ! (negação) converte o valor para seu oposto booleano.
+  > 1. A segunda ! reverte esse valor novamente para seu estado booleano correto.
+
+- É equivalente a usar Boolean(), pois ambos convertem um valor para um booleano.
+
+``` javascript
+console.log(!!"texto");    // true
+console.log(Boolean("texto")); // true
+
+console.log(!!0);          // false
+console.log(Boolean(0));   // false
+```
+
 ## React Hook Form
 - React Hook Form é uma biblioteca flexível e eficiente para gerenciar formulários no React. Ela fornece uma API simples e intuitiva para lidar com validação de formulários, mensagens de erro e envio de formulários. Com o React Hook Form, você pode criar facilmente formulários complexos com código mínimo e melhor desempenho. Para saber mais sobre o React Hook Form, você pode visitar a documentação oficial [aqui](https://react-hook-form.com/).
 
