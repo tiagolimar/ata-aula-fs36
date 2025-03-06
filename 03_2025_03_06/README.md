@@ -89,3 +89,17 @@ Esses relacionamentos permitem consultas eficientes e garantem que os dados seja
 
 Para mais detalhes sobre relacionamentos no Sequelize, consulte a documentação oficial:  
 🔗 [Sequelize Associations](https://sequelize.org/docs/v6/core-concepts/assocs/)
+
+
+## Expo
+
+[Expo](https://expo.dev/) é uma plataforma para desenvolvimento de aplicativos **React Native**, facilitando a criação, teste e publicação de apps para **Android e iOS** sem configurações complexas.
+
+### Principais vantagens:
+- **Configuração simplificada**: Não é necessário configurar Xcode ou Android Studio para começar.
+- **Ecossistema integrado**: Possui bibliotecas para notificações push, câmera, geolocalização e mais.
+- **Testes rápidos**: Com o **Expo Go**, é possível testar o app diretamente no celular sem compilar.
+- **Publicação facilitada**: Permite distribuir o app facilmente na App Store e Google Play.
+
+🚀 **Ideal para quem quer desenvolver apps mobile de forma rápida e eficiente com React Native!**
+
