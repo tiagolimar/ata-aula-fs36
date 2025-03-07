@@ -246,6 +246,183 @@ Para mais detalhes sobre JWT, consulte a documentação oficial:
 🔗 [JWT.io - JSON Web Tokens](https://jwt.io/)  
 🔗 [jsonwebtoken no npm](https://www.npmjs.com/package/jsonwebtoken)
 
-## JEST
+## Jest
+
+### 1. O que é Jest?
+
+Jest é um **framework de testes em JavaScript** amplamente utilizado para testar aplicações **Node.js, React e outros projetos JS/TS**. Ele é rápido, simples de configurar e possui recursos como:
+
+- **Execução automática** dos testes ao salvar arquivos.
+- **Mocks e spies** para simular dependências.
+- **Snapshots** para testar componentes React.
+- **Cobertura de código** integrada.
+
+🔹 **Site oficial:** [https://jestjs.io/](https://jestjs.io/)
+🔹 **Getting Started:** [https://jestjs.io/docs/getting-started](https://jestjs.io/docs/getting-started)
+
+---
+
+### 2. Instalando e Configurando o Jest
+
+Para instalar o Jest em um projeto Node.js, use:
+
+```bash
+npm install --save-dev jest
+```
+
+Em seguida, adicione um script no `package.json`:
+
+```javascript
+"scripts": {
+  "test": "jest"
+}
+```
+
+Agora, podemos rodar os testes com:
+
+```bash
+npm test
+```
+
+### 3. Criando o Primeiro Teste com Jest
+
+Crie um arquivo chamado `soma.js` com a seguinte função:
+
+```javascript
+function soma(a, b) {
+    return a + b;
+}
+
+module.exports = soma;
+```
+
+Agora, crie um arquivo de teste `soma.test.js`:
+
+```javascript
+const soma = require('./soma');
+
+test('soma 1 + 2 para dar 3', () => {
+    expect(soma(1, 2)).toBe(3);
+});
+```
+Execute o teste:
+
+```bash
+npm test
+```
+
+Se tudo estiver certo, o Jest executará o teste e retornará um resultado positivo. ✅
+
+### 4. Testando Funções Assíncronas
+
+O Jest permite testar funções assíncronas usando `async/await` ou Promises.
+
+### Exemplo de função assíncrona:
+Crie um arquivo `usuario.js`:
+
+```javascript
+function buscarUsuario() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({ id: 1, nome: 'João' });
+        }, 1000);
+    });
+}
+
+module.exports = buscarUsuario;
+```
+
+### Criando o teste assíncrono:
+Agora, crie um arquivo `usuario.test.js`:
+
+```javascript
+const buscarUsuario = require('./usuario');
+
+test('deve retornar um usuário com nome João', async () => {
+    const usuario = await buscarUsuario();
+    expect(usuario.nome).toBe('João');
+});
+```
+
+Execute os testes novamente:
+
+```bash
+npm test
+```
+
+Jest aguardará a execução assíncrona e verificará o resultado.
+
+### 5. Mocks no Jest
+
+Mocks são usados para simular funções e dependências, permitindo testar código isoladamente.
+
+### Exemplo de Mock Function:
+Crie um arquivo `servico.js`:
+
+```javascript
+function enviarEmail(usuario) {
+    console.log(`Enviando e-mail para ${usuario.email}`);
+    return true;
+}
+
+module.exports = enviarEmail;
+```
+
+Agora, no arquivo de teste `servico.test.js`, podemos simular essa função:
+
+```javascript
+const enviarEmail = require('./servico');
+
+test('deve chamar a função de envio de e-mail', () => {
+    const mockEnviarEmail = jest.fn().mockReturnValue(true);
+
+    const resultado = mockEnviarEmail({ email: 'teste@email.com' });
+
+    expect(mockEnviarEmail).toHaveBeenCalled();
+    expect(resultado).toBe(true);
+});
+```
+
+O `jest.fn()` cria uma função simulada, permitindo verificar se foi chamada e qual valor retornou.
+
+### 6. Testando Cobertura de Código
+
+O Jest possui um recurso embutido para analisar **a cobertura de código dos testes**.
+
+Para ativá-lo, basta rodar o seguinte comando:
+
+```bash
+npm test -- --coverage
+```
+
+Isso gera um relatório indicando quais partes do código foram testadas e quais não foram.
+
+### Exemplo de saída:
+```psql
+--------------------|---------|----------|---------|---------|-------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+--------------------|---------|----------|---------|---------|-------------------
+All files          |   85.71 |     75.00 |   66.67 |   85.71 |                   
+ soma.js           |   100.0 |    100.0  |   100.0 |   100.0 |                   
+ usuario.js        |   75.00 |     50.00 |    50.0 |   75.00 | 3-5               
+--------------------|---------|----------|---------|---------|-------------------
+```
+
+O relatório mostra a porcentagem de código testado. O objetivo é sempre maximizar essa cobertura para garantir que todas as partes críticas do sistema estejam testadas.
+
+### 7. Configuração Avançada do Jest
+
+Para personalizar o Jest, podemos criar um arquivo `jest.config.js` na raiz do projeto:
+
+```javascript
+module.exports = {
+    testEnvironment: 'node', // Define o ambiente de execução dos testes
+    collectCoverage: true,   // Ativa a cobertura de testes
+    coverageDirectory: 'coverage', // Define onde os relatórios de cobertura serão armazenados
+    verbose: true,           // Exibe mais detalhes na execução dos testes
+};
+```
+
+Agora, ao rodar `npm test`, o Jest usará essa configuração personalizada.
 
 ## CYPRESS
